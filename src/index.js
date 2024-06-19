@@ -9,30 +9,22 @@ const test = () => {
   
 
 // test()
-  // 手动调用 sum 函数来生成覆盖率
+// 手动调用 sum 函数来生成覆盖率
 sum(1, 2);
 
 
+const a = '1'
+const b = '2'
 
-
-
-
-const  a = '1'
-console.log(a);
-console.log(a);
-console.log(a);
-console.log(a);
 
 
 if (true) {
-    console.log('123');
+    console.log(a);
 } else if(false){
-    console.log('456');
+    console.log(b);
 } else {
     console.log('789');
 }
-
-
 
 const sortaaa = () => {
     function compareFn(a, b) {
@@ -48,5 +40,3 @@ const sortaaa = () => {
 }
 
 sortaaa()
-console.log(sortaaa());
-  

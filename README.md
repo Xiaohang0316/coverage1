@@ -28,7 +28,7 @@ https://v4.webpack.js.org/loaders/istanbul-instrumenter-loader/
 
 
 
-```json
+```js
 {   // 所有的变量
     statementMap: {
       "0": {

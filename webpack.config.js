@@ -12,6 +12,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src'),
         use: {
           loader: 'babel-loader'
         }
@@ -19,6 +20,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules|\.test\.js$/,
+        include: path.resolve(__dirname, 'src'),
         enforce: 'post',
         use: {
         //   loader: 'istanbul-instrumenter-loader',

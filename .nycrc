@@ -1,0 +1,7 @@
+{
+  "include": ["src"],
+  "exclude": ["dist"],
+  "reporter": ["html", "text"],
+  "all": true,
+  "report-dir": "./coverage"
+}
