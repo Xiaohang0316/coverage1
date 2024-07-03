@@ -148,3 +148,18 @@
     // s,f,b: 调用方法的时候调用封装的大方法然后给对应的变量 ++ 记录，调用次数
     ```
 4. 编译过后的代码如何映射在原始文件中
+
+
+
+
+https://blog.csdn.net/formylovetm/article/details/126095387
+
+https://juejin.cn/post/7165883401596207118
+
+https://blog.csdn.net/weixin_57677300/article/details/130464589
+
+https://www.cnblogs.com/yaopengfei/p/17192040.html
+
+https://www.jiangruitao.com/webpack/source-map/
+
+https://juejin.cn/post/6844903971648372743
