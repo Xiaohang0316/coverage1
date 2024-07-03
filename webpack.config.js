@@ -11,20 +11,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src'),
-        use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.js$/,
         exclude: /node_modules|\.test\.js$/,
         include: path.resolve(__dirname, 'src'),
         enforce: 'post',
         use: {
-        //   loader: 'istanbul-instrumenter-loader',
-          loader: '@jsdevtools/coverage-istanbul-loader',
+          loader: 'istanbul-instrumenter-loader',
           options: { esModules: true }
         }
       }
