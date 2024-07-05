@@ -5,7 +5,7 @@
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
     "babel-loader": "^9.1.3",
-    # 打包说使用的 module， 给代码中注入新的方法
+    # 打包时使用的 module， 给代码中注入新的方法
     # https://v4.webpack.js.org/loaders/istanbul-instrumenter-loader/
     "istanbul-instrumenter-loader": "^3.0.1",
     # 数据收集工具
@@ -148,11 +148,45 @@
     // s,f,b: 调用方法的时候调用封装的大方法然后给对应的变量 ++ 记录，调用次数
     ```
 4. 编译过后的代码如何映射在原始文件中
+    1. source-map 中都有什么
+        ```js
+        {
+            "version": 3,// 当前使用 source-map 的版本
+            "file": "bundle.js",// 编译后的文件名
+            "mappings": ";;;;;AAAA;AACA;AACA;AACA;AACA;AACA",// 这是最重要的内容，表示了源代码及编译后代码的关系
+            "sources": [// 源文件名
+                "webpack://manual/./src/index.js"
+            ],
+            "sourcesContent": [// 转换前的的代码
+                "function sum (a, b) {\r\n    return a + b;\r\n}\r\nsum(1, 2);\r\n\r\n\r\n"
+            ],
+            "names": [],// 转换前的变量和属性名称
+            "sourceRoot": ""// 所有的sources相对的根目录
+        }
+        ```
+    2. source-map 如何对应到 源文件中的位置
+        这里需要用到上面的 `mappings` 
+        首先 mappings 的内容其实是 Base64 VLQ 的编码表示。
+        内容由三部分组成，分别为：
+        - 英文，表示源码及压缩代码的位置关联
+        - 逗号，分隔一行代码中的内容。比如说 console.log(a) 就由 console 、log 及 a 三部分组成，所以存在两个逗号。
+        - 分号，代表换行
+        所以 mappings 中的每一个字母都代表每个代码对应的位置，下面是当前 mappings 的解析结果
+
+        https://www.murzwin.com/base64vlq.html
+        ![alt text](image-7.png)
+    <!-- 1. 根据源文件，生成source-map文件，webpack在打包时，通过配置`devtool: 'source-map'`生成source-map
+    2. 在转换后的代码，最后添加一个注释，它指向sourcemap //# sourceMappingURL=bundle.js.map
+    3. 浏览器会根据注释，查找响应的source-map，并且根据source-map  中的 mappings 还原代码
+    ![alt text](image-6.png) -->
+
+    
 
 
 
 
-https://blog.csdn.net/formylovetm/article/details/126095387
+
+<!-- https://blog.csdn.net/formylovetm/article/details/126095387
 
 https://juejin.cn/post/7165883401596207118
 
@@ -162,4 +196,4 @@ https://www.cnblogs.com/yaopengfei/p/17192040.html
 
 https://www.jiangruitao.com/webpack/source-map/
 
-https://juejin.cn/post/6844903971648372743
+https://juejin.cn/post/6844903971648372743 -->
