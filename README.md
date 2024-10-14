@@ -23,7 +23,7 @@ https://v4.webpack.js.org/loaders/istanbul-instrumenter-loader/
 ```
 
 添加完之后使用 webpack 重新打包代码
-![alt text](image.png)
+![alt text](./img/image.png)
 
 
 

@@ -90,11 +90,11 @@
        通过上面的配置一个简单的 coverage demo 已经算是完成了
        执行 npm run coverage 即可在控制台看到报告的输出
        从图中可以看到 index.js 覆盖率为 66.66%
-       ![alt text](image-2.png)
+       ![alt text](./img/image-2.png)
        如何找到没有被覆盖的代码，可以执行 npm run report:html 生成更为详细的报告，这个命令使用 nyc report --reporter=html 读取 .nyc_output 抓取的测试输出结果 json 生成html 文件
        打开 coverage 文件下的 index.html 然后点到测试的那个文件即可看到详细的代码覆盖文件
-       ![alt text](image-3.png)
-       ![alt text](image-4.png)
+       ![alt text](./img/image-3.png)
+       ![alt text](./img/image-4.png)
 
 
 
@@ -102,7 +102,7 @@
    https://v4.webpack.js.org/loaders/istanbul-instrumenter-loader/
    code coverage 主要通过 webpack loaders istanbul-instrumenter-loader 来实现的
    通过观察不使用和使用这个 loaders 的打包文件可以发现，使用 istanbul-instrumenter-loader 打包后的文件，会被注入一个非常大的 function 将当前文件里所有的 function 判断 和 变量都做上了编号
-    ![alt text](image-5.png)
+    ![alt text](./img/image-5.png)
     ```js
         {
             "path": "/Users/********/Desktop/coverage1/src/index.js",
@@ -174,7 +174,7 @@
         所以 mappings 中的每一个字母都代表每个代码对应的位置，下面是当前 mappings 的解析结果
 
         https://www.murzwin.com/base64vlq.html
-        ![alt text](image-7.png)
+        ![alt text](./img/image-7.png)
     <!-- 1. 根据源文件，生成source-map文件，webpack在打包时，通过配置`devtool: 'source-map'`生成source-map
     2. 在转换后的代码，最后添加一个注释，它指向sourcemap //# sourceMappingURL=bundle.js.map
     3. 浏览器会根据注释，查找响应的source-map，并且根据source-map  中的 mappings 还原代码
