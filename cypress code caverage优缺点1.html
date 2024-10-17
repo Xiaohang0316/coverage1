@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title></title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <p>用Cypress+Angular做code coverage的优缺点，优缺点都需要举例。Deadline: Oct. 18。</p>
+<p>Cypress
+Cypress 是在 Mocha API 的基础上开发的一套开箱即用的 E2E 测试框架，并不依赖前端框架，也无需其他测试工具库，配置简单，并且提供了强大的 GUI 图形工具，可以自动截图录屏，实现时空旅行并在测试流程中 Debug 等等。</p>
+<p>总结一下，Cypress</p>
+<p>优点单击</p>
+<ol>
+<li>
+<p>真实环境测试：可以模拟用户的点击输入操作，事件驱动来验证页面渲染是否符合预期
+Cypress 有丰富的 API 可以模拟用户的点击 拖拽 滚动 等等（<a href="https://docs.cypress.io/api/table-of-contents#Queries%EF%BC%89">https://docs.cypress.io/api/table-of-contents#Queries）</a></p>
+<table>
+<thead>
+<tr>
+<th>check</th>
+<th>勾选复选框或单选按钮元素。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clear</td>
+<td>清除输入或文本区域的值。</td>
+</tr>
+<tr>
+<td>click</td>
+<td>单击 DOM 元素</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>双击 DOM 元素</td>
+</tr>
+<tr>
+<td>rightclick</td>
+<td>右键单击 DOM 元素</td>
+</tr>
+<tr>
+<td>scrollIntoView</td>
+<td>将元素滚动到视图中</td>
+</tr>
+<tr>
+<td>scrollTo</td>
+<td>滚动到特定位置</td>
+</tr>
+<tr>
+<td>select</td>
+<td><option>在 a 内选择一个<select></td>
+</tr>
+<tr>
+<td>selectFile</td>
+<td>在 HTML5 输入元素中选择一个文件，或者模拟将文件拖到浏览器中。</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td>在 DOM 元素上触发事件</td>
+</tr>
+<tr>
+<td>type</td>
+<td>在 DOM 元素中输入</td>
+</tr>
+<tr>
+<td>uncheck</td>
+<td>取消选中复选框。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>执行速度快：由于 Cypress 直接在浏览器中运行，不需要依赖 Selenium 等驱动器，执行速度非常快</p>
+<ol>
+<li>Cypress 以其快速的运行速度而闻名，因为它直接在浏览器中运行测试，不需要通过网络发送命令</li>
+<li>Selenium 通过 WebDriver 向浏览器发送命令，这可能导致比 Cypress 更慢的运行速度，尤其是在网络延迟较高的情况下。</li>
+</ol>
+</li>
+<li>
+<p>支持并行测试：Cypress 支持并行测试，可以提高测试效率，节省时间和成本</p>
+<ol>
+<li>多浏览器并行测试：Cypress 允许你在不同的浏览器实例中同时运行测试。例如，你可以在 Chrome 和 Firefox 浏览器中同时运行相同的测试套件。</li>
+<li>Spec 分割：Cypress 允许你将测试用例分割成多个块（specs），然后可以并行运行这些 specs。这意味着你可以将一个大的测试文件分割成多个小文件，然后同时运行它们。</li>
+<li>智能编排：Cypress Cloud 提供了智能编排功能，可以自动并行化测试运行，优化测试执行顺序，优先重新运行失败的测试，并在出现失败时自动取消剩余的测试运行。</li>
+</ol>
+</li>
+<li>
+<p>作为对敏捷开发，持续集成的环节补充，可以将 Code coverage 与 QA 测试同步进行</p>
+<ol>
+<li>在做功能测试时，也可以直接生成 coverage 不需要再去重新写 Code coverage 节省大量时间</li>
+</ol>
+</li>
+<li>
+<p>集成简单：通过使用 @cypress/code-coverage 插件，可以轻松地将代码覆盖率测试集成到现有的 Cypress 项目中</p>
+<ol>
+<li>无需配置：Cypress 提供了一个零配置的测试环境，这意味着你不需要花费大量时间来配置测试环境。它自带了一个完整的测试运行器和自动化浏览器，你只需安装 Cypress 并开始编写测试即可</li>
+<li>安装简便：通过 npm 或 yarn 这样的包管理器，你可以轻松地安装 Cypress。安装过程简单快捷，通常只需要运行一个命令，例如 npm install cypress --save-dev。</li>
+<li>快速启动：Cypress 允许你快速启动并运行测试。你可以立即编写测试并在本地开发环境中运行它们，而不需要等待复杂的设置过程。</li>
+<li>直观的 API：Cypress 提供了一个直观且易于学习的 API，使得编写测试用例变得简单直观。它的链式命令和清晰的语法结构使得测试代码易于理解和维护。</li>
+</ol>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>Cypress 在初始阶段因其简洁性而易于上手，但随着项目的发展和测试代码的不断积累，可能会引入复杂的封装，这增加了代码的阅读难度。这种复杂性可能导致后来的团队成员在接手项目时难以迅速理解和掌握测试框架，从而影响开发效率和测试质量。</li>
+<li>只能覆盖在测试中实际加载和执行的代码。如果某些代码或模块是动态加载的，或者在测试中没有被访问，那么这些代码将不会被覆盖率报告所包含</li>
+</ol>
+<p>简单介绍一下使用方法（具体可以参照<a href="https://docs.cypress.io/">官网</a>引导）：</p>
+<p>安装：</p>
+<pre><code class="language-bash">yarn add cypress --dev
+</code></pre>
+<p>添加到项目的 npm 脚本中：</p>
+<pre><code class="language-json">    <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;cypress:open&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cypress open&quot;</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+</code></pre>
+<p>启动 Cypress 项目</p>
+<pre><code class="language-bash">npm run cypress:open
+</code></pre>
+<p>这就已经在本地打开了测试 GUI，可以进行测试了。
+<img src="file:////Users/xiaohang/Desktop/coverage1/image.png" alt="alt text"></p>
+<p>用官方文档的一个例子说明一下测试代码怎么写：</p>
+<pre><code class="language-js"><span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;My First Test&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;Gets, types and asserts&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    cy.<span class="hljs-title function_">visit</span>(<span class="hljs-string">&#x27;https://example.cypress.io&#x27;</span>)
+
+    cy.<span class="hljs-title function_">contains</span>(<span class="hljs-string">&#x27;type&#x27;</span>).<span class="hljs-title function_">click</span>()
+
+    <span class="hljs-comment">// Should be on a new URL which includes &#x27;/commands/actions&#x27;</span>
+    cy.<span class="hljs-title function_">url</span>().<span class="hljs-title function_">should</span>(<span class="hljs-string">&#x27;include&#x27;</span>, <span class="hljs-string">&#x27;/commands/actions&#x27;</span>)
+
+    <span class="hljs-comment">// Get an input, type into it and verify that the value has been updated</span>
+    cy.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;.action-email&#x27;</span>)
+      .<span class="hljs-title function_">type</span>(<span class="hljs-string">&#x27;test@email.com&#x27;</span>)
+      .<span class="hljs-title function_">should</span>(<span class="hljs-string">&#x27;have.value&#x27;</span>, <span class="hljs-string">&#x27;test@email.com&#x27;</span>)
+  })
+})
+</code></pre>
+<p>这其实已经测试了：</p>
+<p>打开目标页面，这里是示例的 <a href="http://example.cypress.io">example.cypress.io</a>， 实际上在项目里应是本地启动的 server 页面如 <a href="http://localhost:8080">http://localhost:8080</a>
+找到页面的 dom 里文字内容为 'type' 的按钮，点击（如果页面里并没有渲染这个按钮即测试没跑通）
+按钮点击后，页面应跳转到了路由中包含 '/commands/actions' 的页面
+在此页面的 dom 里可以找到 class 类名为 '.action-email' 的 input 框，在里面输入 'test@email.com' 后，输入框的 value 值应该为 'test@email.com'</p>
+
+            
+            
+        </body>
+        </html>
